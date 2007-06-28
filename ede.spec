@@ -16,7 +16,6 @@ Group: 		Graphical desktop/Other
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	efltk-devel autoconf
-Requires: 	libefltk >= 2.0.2
 
 %description
 Equinox Desktop Environment (EDE) is desktop environment - the piece of

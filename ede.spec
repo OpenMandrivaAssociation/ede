@@ -1,5 +1,5 @@
 %define	name	ede
-%define	version	1.0.4
+%define	version	1.1
 %define	release	%mkrel 1
 
 Name: 		%{name}
@@ -15,7 +15,7 @@ License: 	GPL
 Group: 		Graphical desktop/Other
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	efltk-devel
+BuildRequires:	efltk-devel autoconf
 Requires: 	libefltk >= 2.0.2
 
 %description
@@ -44,7 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT{%{_bindir},%{_datadir}}
 %makeinstall LOCALEDIR=$RPM_BUILD_ROOT%{_datadir}/locale
 
-# Mandrake specific stuff - add to wmsessions
+# Mandriva specific stuff - add to wmsessions
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d/
 cat << EOF > %{buildroot}%{_sysconfdir}/X11/wmsession.d/08EDE
 NAME=EDE

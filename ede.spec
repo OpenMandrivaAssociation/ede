@@ -8,6 +8,8 @@ Release: 	%{release}
 Source0: 	http://ovh.dl.sourceforge.net/sourceforge/ede/%{name}-%{version}.tar.bz2
 Patch0:		ede-1.0.4-exclude-unused-progs.patch
 Patch2:		ede-mandrake-menufixes.patch
+# AdamW 2007/06 - Fix x86-64 build. Just changes a bunch of ints into longs. Will submit upstream.
+Patch3:		ede-1.1-x86_64.patch
 
 Summary:	The core programs for the Equinox Desktop Environment
 URL: 		http://ede.sourceforge.net/
@@ -32,6 +34,7 @@ course window manager that manages your windows with config utility.
 %setup -q -n %{name}
 %patch0 -p1
 %patch2 -p1
+%patch3 -p1 -b .x86_64
 
 %build
 autoconf

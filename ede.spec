@@ -1,13 +1,13 @@
 %define	name	ede
 %define	version	1.1
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
 Source0: 	http://ovh.dl.sourceforge.net/sourceforge/ede/%{name}-%{version}.tar.bz2
 Patch0:		ede-1.0.4-exclude-unused-progs.patch
-Patch2:		ede-mandrake-menufixes.patch
+Patch2:		ede-mandriva-menufixes.patch
 # AdamW 2007/06 - Fix x86-64 build. Just changes a bunch of ints into longs. Will submit upstream.
 Patch3:		ede-1.1-x86_64.patch
 
@@ -37,6 +37,10 @@ course window manager that manages your windows with config utility.
 %patch3 -p1 -b .x86_64
 
 %build
+# delete a bunch of obsolete launchers
+rm -f datas/programs-links/{Casino.desktop,dialup.desktop,Mastermind.desktop,Netscape.desktop,Notepad.desktop,Qubix.desktop,sccalc.desktop,UNIX.desktop,UNIX-regular,desktop,Vnterm.desktop,WordPerfect.desktop,x11amp.desktop,xwpe.desktop}
+rm -f datas/desktop-links/Internet.desktop
+
 autoconf
 %configure
 %make
@@ -61,6 +65,14 @@ EOF
 for i in e*; do %find_lang $i; done
 echo "%%defattr (644, root, root, 755)" > %{name}.lang
 cat *.lang|grep %%lang >> %{name}.lang
+
+# AdamW 2007/06 - update DM config files per http://wiki.mandriva.com/en/Development/Howto/Wmsession
+
+%post
+%make_session
+
+%postun
+%make_session
 
 %clean
 rm -rf $RPM_BUILD_ROOT

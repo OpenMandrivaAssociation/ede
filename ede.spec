@@ -17,7 +17,7 @@ License: 	GPL
 Group: 		Graphical desktop/Other
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	efltk-devel autoconf libx11-devel libxext-devel xft2-devel libpng-devel
+BuildRequires:	efltk-devel autoconf libx11-devel libxext-devel xft2-devel libpng-devel libjpeg-devel
 
 %description
 Equinox Desktop Environment (EDE) is desktop environment - the piece of

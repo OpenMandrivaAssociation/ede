@@ -38,7 +38,7 @@ course window manager that manages your windows with config utility.
 
 %build
 # delete a bunch of obsolete launchers
-rm -f datas/programs-links/{Casino.desktop,dialup.desktop,Mastermind.desktop,Netscape.desktop,Notepad.desktop,Qubix.desktop,sccalc.desktop,UNIX.desktop,UNIX-regular,desktop,Vnterm.desktop,WordPerfect.desktop,x11amp.desktop,xwpe.desktop}
+rm -f datas/programs-links/{Casino.desktop,dialup.desktop,ecdplayer.desktop,Mastermind.desktop,Netscape.desktop,Notepad.desktop,Qubix.desktop,sccalc.desktop,UNIX.desktop,UNIX-regular,desktop,Vnterm.desktop,WordPerfect.desktop,x11amp.desktop,xwpe.desktop}
 rm -f datas/desktop-links/Internet.desktop
 
 autoconf

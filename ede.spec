@@ -1,6 +1,6 @@
 %define	name	ede
 %define	version	1.1
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 
 Name: 		%{name}
 Version: 	%{version}

@@ -1,19 +1,16 @@
 %define	name	ede
-%define	version	1.1
-%define	release	%mkrel 4
+%define	version	1.2
+%define	release	%mkrel 1
 
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source0: 	http://ovh.dl.sourceforge.net/sourceforge/ede/%{name}-%{version}.tar.bz2
+Source0: 	http://ovh.dl.sourceforge.net/sourceforge/ede/%{name}-%{version}.tar.gz
 Patch0:		ede-1.0.4-exclude-unused-progs.patch
 Patch2:		ede-mandriva-menufixes.patch
-# AdamW 2007/06 - Fix x86-64 build. Just changes a bunch of ints into longs. Will submit upstream.
-Patch3:		ede-1.1-x86_64.patch
-
 Summary:	The core programs for the Equinox Desktop Environment
 URL: 		http://ede.sourceforge.net/
-License: 	GPL
+License: 	GPLv2+
 Group: 		Graphical desktop/Other
 
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -34,7 +31,6 @@ course window manager that manages your windows with config utility.
 %setup -q -n %{name}
 %patch0 -p1
 %patch2 -p1
-%patch3 -p1 -b .x86_64
 
 %build
 # delete a bunch of obsolete launchers

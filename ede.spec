@@ -13,7 +13,6 @@ URL: 		http://ede.sourceforge.net/
 License: 	GPLv2+
 Group: 		Graphical desktop/Other
 
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	efltk-devel autoconf libx11-devel libxext-devel xft2-devel libpng-devel libjpeg-devel
 
 %description

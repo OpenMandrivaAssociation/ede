@@ -1,0 +1,317 @@
+diff -Naur ede-1.0.2/datas/desktop-links/Terminal.desktop kk/datas/desktop-links/Terminal.desktop
+--- ede-1.0.2/datas/desktop-links/Terminal.desktop	2005-02-04 16:39:48.273946704 +0100
++++ kk/datas/desktop-links/Terminal.desktop	2005-01-31 17:23:38.000000000 +0100
+@@ -5,6 +5,6 @@
+   X=20
+   Y=130
+   Name=Terminal
+-  Exec=xterm
++  Exec=rxvt
+   Name[sk]=Terminál
+
+diff -Naur ede-1.0.2/datas/programs-links/etranslate.desktop kk/datas/programs-links/etranslate.desktop
+--- ede-1.0.2/datas/programs-links/etranslate.desktop	1970-01-01 01:00:00.000000000 +0100
++++ kk/datas/programs-links/etranslate.desktop	2005-01-31 17:32:39.000000000 +0100
+@@ -0,0 +1,7 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Translator
++  Exec=etranslate
++  Icon=edit.png
++
+
+--- ede/datas/programs-links/abiword.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/abiword.desktop.new	2007-06-28 16:57:23.000000000 -0700
+@@ -2,7 +2,7 @@
+ 
+ [Desktop Entry]
+   Name=AbiWord
+-  Exec=AbiWord
++  Exec=abiword
+   Icon=document.png
+   Name[sk]=AbiWord
+
+--- ede/datas/programs-links/fstabedit.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/fstabedit.desktop.new	2007-06-28 17:04:04.000000000 -0700
+@@ -2,7 +2,7 @@
+ 
+ [Desktop Entry]
+   Name=Mount point editor
+-  Exec=efstabedit
++  Exec=/usr/sbin/diskdrake
+   Icon=folder_red.png
+   Name[sk]=Editor diskových pripojení
+ 
+--- ede/datas/programs-links/lynx.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/lynx.desktop.new	2007-06-28 17:05:55.000000000 -0700
+@@ -31,8 +31,8 @@
+   Comment[sk]=Textový prehliadač WWW
+   Comment[sv]=Textbaserad webbläsare
+   Comment[wa]=Lynx est on betcheu waibe č môde tecsse
+-  TryExec=rxvt -title Lynx -e lynx ~/.netscape/bookmarks.html
+-  Exec=xterm -title Lynx -e lynx ~/.netscape/bookmarks.html
++  TryExec=rxvt -title Lynx -e lynx
++  Exec=xterm -title Lynx -e lynx
+   Icon=log.png
+   Terminal=false
+   MultipleArgs=false
+
+--- ede/datas/programs-links/Mozilla.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/Mozilla.desktop.new	2007-06-28 17:06:35.000000000 -0700
+@@ -1,8 +1,8 @@
+ # EFLTK Configuration - Version 2,003000
+ 
+ [Desktop Entry]
+-  Name=Mozilla
+-  Name[sk]=Mozilla
+-  Exec=mozilla
++  Name=Mozilla Firefox
++  Name[sk]=Mozilla Firefox
++  Exec=mozilla-firefox
+   Icon=mozilla.png
+ 
+--- ede/datas/programs-links/mplayer.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/mplayer.desktop.new	2007-06-28 17:07:47.000000000 -0700
+@@ -2,7 +2,7 @@
+ 
+ [Desktop Entry]
+   Name=MPlayer
+-  Exec=emplayer -gui
++  Exec=gmplayer
+   Icon=noatun.png
+   Name[sk]=Media Player
+ 
+--- ede/datas/programs-links/postoffice.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/postoffice.desktop.new	2007-06-28 17:09:09.000000000 -0700
+@@ -3,6 +3,6 @@
+ [Desktop Entry]
+   Name=Email client
+   Name[sk]=Poštový klient
+-  Exec=epostoffice
++  Exec=mozilla-thunderbird
+   Icon=mozilla-mail.png
+ 
+--- ede/datas/programs-links/xbill.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/xbill.desktop.new	2007-06-28 17:14:57.000000000 -0700
+@@ -16,7 +16,7 @@
+   Name[sk]=xBill
+   Name[sv]=xBill
+   Icon=misc.png
+-  Exec=exbill
++  Exec=xbill
+   Terminal=0
+   Type=Application
+ 
+--- ede/datas/programs-links/xpdf.desktop	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/xpdf.desktop.new	2007-06-28 17:15:16.000000000 -0700
+@@ -2,7 +2,7 @@
+ 
+ [Desktop Entry]
+   Name=PDF Viewer
+-  Exec=epdfreader
++  Exec=xpdf
+   Icon=pdf-document.png
+   Name[sk]=PDF Viewer
+
+--- ede/datas/ede.conf	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/ede.conf.new	2007-06-28 16:55:24.000000000 -0700
+@@ -28,20 +28,20 @@
+   AllDesktops=false
+ 
+ [Desktop]
+-  Wallpaper=
++  Wallpaper=/usr/share/mdk/backgrounds/default.png
+   Color=RGB(76,108,178)
+   Opacity=205
+-  Use=0
++  Use=1
+ 
+ [Workspaces]
+   Count=4
+   (null)=9@9
+ 
+ [Web]
+-  Browser=mozilla
++  Browser=www-browser
+ 
+ [Terminal]
+-  Terminal=xterm
++  Terminal=rxvt
+ 
+ [Mouse]
+   Accel=2
+--- ede/datas/programs-links/pidgin.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/pidgin.desktop.new	2007-06-29 02:03:26.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Pidgin
++  Exec=pidgin
++  Icon=licq.png
++  Name[sk]=Pidgin
++
+--- ede/datas/programs-links/gqview.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/gqview.desktop.new	2007-06-29 02:11:18.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=GQView
++  Exec=gqview
++  Icon=image.png
++  Name[sk]=GQView
++
+--- ede/datas/programs-links/mcc.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/mcc.desktop.new	2007-06-29 02:15:32.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Mandriva Control Center
++  Comment=Configure your computer
++  Exec=drakconf
++  Icon=kcontrol.png
++
+--- ede/datas/programs-links/rpmdrake.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/rpmdrake.desktop.new	2007-06-29 02:18:17.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=RPMdrake
++  Comment=Install and remove software
++  Exec=rpmdrake
++  Icon=synaptic.png
++
+--- ede/datas/programs-links/graveman.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/graveman.desktop.new	2007-06-29 02:20:45.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Graveman
++  Comment=Write CDs and DVDs
++  Exec=graveman
++  Icon=cdwriter_mount.png
++
+
+--- ede/datas/programs-links/rox.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/programs-links/rox.desktop.new	2007-06-29 02:31:14.000000000 -0700
+@@ -0,0 +1,8 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Rox
++  Comment=File manager
++  Exec=rox ~
++  Icon=kdisknav.png
++
+
+--- ede/datas/desktop-links/Home.desktop	1969-12-31 16:00:00.000000000 -0800
++++ ede/datas/desktop-links/Home.desktop.new	2007-06-29 02:34:20.000000000 -0700
+@@ -0,0 +1,7 @@
++# EFLTK Configuration - Version 2,003000
++
++[Desktop Entry]
++  Name=Home
++  Exec=rox ~
++  Icon=folder_home.png
++
+--- ede/datas/desktop-links/Makefile	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/desktop-links/Makefile.new	2007-06-29 02:35:29.000000000 -0700
+@@ -13,6 +13,7 @@ include ../../makeinclude
+ desktopdir = $(datadir)/ede/.ede/desktop
+ 
+ DESKTOPLINKS     = \
++	Home.desktop \
+ 	Terminal.desktop
+ 
+ install:
+--- ede/datas/programs-links/Makefile	2006-09-02 13:52:51.000000000 -0700
++++ ede/datas/programs-links/Makefile.new	2007-07-01 13:23:04.000000000 -0700
+@@ -37,19 +37,15 @@ Directory_files = \
+ 
+ Multimedia_DATA = \
+ 	alsaplayer.desktop \
+-	ecdplayer.desktop \
+ 	esoundmixer.desktop \
+ 	mplayer.desktop \
+ 	realplayer.desktop \
+-	xmms.desktop \
+-	x11amp.desktop
+-
++	xmms.desktop
+ 
+ Utilities_DATA = \
+ 	calc.desktop \
+ 	finder.desktop \
+ 	fstabedit.desktop \
+-	sccalc.desktop \
+ 	tips.desktop \
+ 	xmag.desktop 
+ 
+@@ -57,15 +53,16 @@ Applications_DATA = \
+ 	abiword.desktop \
+ 	Emacs.desktop \
+ 	lyx.desktop \
+-	notepad.desktop \
+ 	ooffice.desktop \
++	rox.desktop \
++	graveman.desktop \
+ 	Vim.desktop \
+-	WordPerfect.desktop \
+ 	Xemacs.desktop 
+ 
+ Graphics_DATA = \
+ 	acroread.desktop \
+ 	GIMP.desktop \
++	gqview.desktop \
+ 	gv.desktop \
+ 	xdvi.desktop \
+ 	xpdf.desktop \
+@@ -74,9 +71,8 @@ Graphics_DATA = \
+ System_DATA = \
+ 	Eterm.desktop \
+ 	Kterm.desktop \
+-	UNIX.desktop \
+-	UNIX-regular.desktop \
+-	Vnterm.desktop \
++	mcc.desktop \
++	rpmdrake.desktop \
+ 	rxvt.desktop
+ 
+ Settings_DATA =	\
+@@ -89,28 +85,23 @@ Settings_DATA =	\
+ 	ewmconf.desktop \
+ 	scrsaver.desktop
+ 
+-
+ Internet_DATA = \
+-	dialup.desktop \
+ 	lynx.desktop \
+ 	Mozilla.desktop \
+-	Netscape.desktop \
+ 	Opera.desktop \
++	pidgin.desktop \
+ 	postoffice.desktop
+ 
+ Development_DATA = \
+ 	cooledit.desktop \
+ 	fluid.desktop \
+-	xwpe.desktop \
+-	xxgdb.desktop 
++	xxgdb.desktop \
++	etranslate.desktop
+ 
+ Root_DATA = 
+ 
+ Games_DATA = \
+-	Casino.desktop \
+ 	lbreak.desktop \
+-	Mastermind.desktop \
+-	Qubix.desktop \
+ 	xbill.desktop 
+ 
+ 

@@ -1,20 +1,32 @@
-%define	name	ede
-%define	version	1.2
-%define	release	%mkrel 5
-
-Name: 		%{name}
-Version: 	%{version}
-Release: 	%{release}
-Source0: 	http://ovh.dl.sourceforge.net/sourceforge/ede/%{name}-%{version}.tar.gz
+Name: 		ede
+Version: 	2.0
+Release: 	1
+Source0: 	http://downloads.sourceforge.net/project/ede/%{name}/%{version}/%{name}-%{version}.tar.gz
 Patch0:		ede-1.0.4-exclude-unused-progs.patch
+Patch1:		ede-2.0-mdv-linking.patch
 Patch2:		ede-mandriva-menufixes.patch
+Patch3:		ede-2.0-rosa-flags.patch
+Patch4:		ede-2.0-rosa-format-security.patch
+Patch5:		ede-2.0-rosa-no-update-mime-database.patch
 Summary:	The core programs for the Equinox Desktop Environment
-URL: 		http://ede.sourceforge.net/
+URL: 		http://equinox-project.org/
 License: 	GPLv2+
 Group: 		Graphical desktop/Other
 
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	efltk-devel autoconf libx11-devel libxext-devel xft2-devel libpng-devel libjpeg-devel
+BuildRequires:	jam
+BuildRequires:	pkgconfig(edelib)
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	fltk-devel
+BuildRequires:	pkgconfig(libstartup-notification-1.0)
+BuildRequires:	pkgconfig(xpm)
+BuildRequires:	pkgconfig(xkbfile)
+BuildRequires:	pkgconfig(libcurl)
+BuildRequires:	pkgconfig(ice)
+BuildRequires:	pkgconfig(cairo)
+BuildRequires:	pkgconfig(pixman-1)
+BuildRequires:	jpeg-devel
+BuildRequires:	png-devel
 
 %description
 Equinox Desktop Environment (EDE) is desktop environment - the piece of
@@ -28,23 +40,22 @@ tips, time/date and timezone configuration, fast file search tool and of
 course window manager that manages your windows with config utility.
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1
-%patch2 -p1
+%setup -q
+#patch0 -p1
+%patch1 -p1
+#patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
-# delete a bunch of obsolete launchers
-rm -f datas/programs-links/{Casino.desktop,dialup.desktop,ecdplayer.desktop,Mastermind.desktop,Netscape.desktop,Notepad.desktop,Qubix.desktop,sccalc.desktop,UNIX.desktop,UNIX-regular,desktop,Vnterm.desktop,WordPerfect.desktop,x11amp.desktop,xwpe.desktop}
-rm -f datas/desktop-links/Internet.desktop
+%define _disable_ld_no_undefined 1
 
-autoconf
 %configure
-%make
+jam -d+5
 
 %install
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT{%{_bindir},%{_datadir}}
-%makeinstall LOCALEDIR=$RPM_BUILD_ROOT%{_datadir}/locale
+jam install DESTDIR=%{buildroot}
 
 # Mandriva specific stuff - add to wmsessions
 mkdir -p %{buildroot}%{_sysconfdir}/X11/wmsession.d/
@@ -57,12 +68,7 @@ SCRIPT:
 exec %{_bindir}/startede
 EOF
 
-#(peroyvind): several locale files, find those automatically..
-for i in e*; do %find_lang $i; done
-echo "%%defattr (644, root, root, 755)" > %{name}.lang
-cat *.lang|grep %%lang >> %{name}.lang
-
-# AdamW 2007/06 - update DM config files per http://wiki.mandriva.com/en/Development/Howto/Wmsession
+mv %{buildroot}%{_docdir}/%{name}-%{version}* %{buildroot}%{_docdir}/%{name}
 
 %post
 %make_session
@@ -70,13 +76,20 @@ cat *.lang|grep %%lang >> %{name}.lang
 %postun
 %make_session
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%files -f %{name}.lang
-%defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog NEWS README
+%files
+%doc AUTHORS AUTHORS.pekwm ChangeLog README
 %config(noreplace) %{_sysconfdir}/X11/wmsession.d/08EDE
 %{_bindir}/*
+%{_datadir}/applications/*.desktop
+%{_iconsdir}/edeneu
+%{_iconsdir}/kbflags
+%{_datadir}/dbus-1/services/*.service
+%{_datadir}/desktop-directories/ede-*.directory
 %{_datadir}/ede
-
+%{_datadir}/mime/packages/*.xml
+%{_datadir}/pekwm
+%{_datadir}/wallpapers/*
+%{_datadir}/xsessions/ede.desktop
+%config(noreplace) %{_sysconfdir}/pekwm/*
+%config(noreplace) %{_sysconfdir}/xdg/ede/*
+%config(noreplace) %{_sysconfdir}/xdg/menus/*

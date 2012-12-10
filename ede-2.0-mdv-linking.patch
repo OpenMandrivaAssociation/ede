@@ -1,0 +1,44 @@
+Index: ede-2.0/ede-calc/Jamfile
+===================================================================
+--- ede-2.0.orig/ede-calc/Jamfile
++++ ede-2.0/ede-calc/Jamfile
+@@ -13,4 +13,5 @@ SubDir TOP ede-calc ;
+ SOURCE = SciCalc.cpp Main.cpp ;
+ 
+ FltkProgramBare ede-calc : $(SOURCE) ;
++LinkAgainst ede-calc : $(LIBM) ;
+ EdeManual doc/ede-calc.txt : doc/ede-calc.jpg ;
+Index: ede-2.0/Jamconfig.in
+===================================================================
+--- ede-2.0.orig/Jamconfig.in
++++ ede-2.0/Jamconfig.in
+@@ -88,6 +88,7 @@ if $(SUN_COMPILER) {
+ GLOBALFLAGS ?= $(WALL) $(PEDANTIC) -DHAVE_CONFIG_H -I$(TOP) $(OPTIMFLAGS) $(DEBUGFLAGS) $(LARGEFILEFLAGS) ;
+ STDLIB      ?= -lstdc++ ;
+ LIBM        ?= -lm ;
++LIBDL       ?= -ldl ;
+ 
+ # Note that REMOVE_UNUSED_DEPENDENCIES_TRICK _does not_ works when
+ # edelib is compiled as shared library (or when is linked with some shared library)
+Index: ede-2.0/ede-panel/Jamfile
+===================================================================
+--- ede-2.0.orig/ede-panel/Jamfile
++++ ede-2.0/ede-panel/Jamfile
+@@ -12,6 +12,8 @@ SubDir TOP ede-panel ;
+ 
+ EdeProgram  ede-panel : Panel.cpp AppletManager.cpp ede-panel.cpp ;
+ #ObjectC++Flags Panel.cpp : -DEDE_PANEL_LOCAL_APPLETS ;
++#
++LinkAgainst ede-panel : $(LIBDL) ;
+ 
+ if $(OS) != "SOLARIS" {
+ 	# also must use this flag (on anything but Solaris) or program will crash
+@@ -35,7 +37,7 @@ rule PanelApplet
+ 	Main $(target) : $(>) ;
+ 	ObjectC++Flags $(>) : $(GLOBALFLAGS) -fPIC $(FLTKINCLUDE) -I [ FDirName $(TOP) ede-panel ] $(EDELIBINCLUDE) ;
+ 
+-	LinkAgainst $(target) : $(3) $(EDELIBLIB) $(EDELIB_GUI_LIB) $(FLTKLIB) $(STDLIB) ;
++	LinkAgainst $(target) : $(3) $(EDELIBLIB) $(EDELIB_GUI_LIB) $(FLTKLIB) $(STDLIB) $(LIBDL) ;
+ 	LINKFLAGS on $(target) = $(linker_stuff) [ on $(target) return $(LINKFLAGS) ] ;
+ 
+ 	InstallProgram $(EDE_PANEL_APPLETS_DIR) : $(target) ;

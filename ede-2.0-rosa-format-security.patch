@@ -1,0 +1,13 @@
+Index: ede-2.0/ede-bug-tools/ede-bug-report/xmlrpc-c/src/xmlrpc_datetime.c
+===================================================================
+--- ede-2.0.orig/ede-bug-tools/ede-bug-report/xmlrpc-c/src/xmlrpc_datetime.c
++++ ede-2.0/ede-bug-tools/ede-bug-report/xmlrpc-c/src/xmlrpc_datetime.c
+@@ -514,7 +514,7 @@ parseDatetime(xmlrpc_env *   const envP,
+ 
+                 if (error) {
+                     xmlrpc_env_set_fault_formatted(
+-                        envP, XMLRPC_PARSE_ERROR, error);
++                        envP, XMLRPC_PARSE_ERROR, "%s", error);
+                     xmlrpc_strfree(error);
+                 } else
+                     *usecsP = u;

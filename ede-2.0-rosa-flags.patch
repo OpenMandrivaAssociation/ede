@@ -1,0 +1,32 @@
+Index: ede-2.0/Jamconfig.in
+===================================================================
+--- ede-2.0.orig/Jamconfig.in
++++ ede-2.0/Jamconfig.in
+@@ -26,6 +26,10 @@ CC           = @CC@ ;
+ C++          = @CXX@ ;
+ LINK         = $(CC) ;
+ 
++CFLAGS      ?= @CFLAGS@ ;
++CXXFLAGS    ?= @CXXFLAGS@ ;
++LDFLAGS     ?= @LDFLAGS@ ;
++
+ # tools used by jam rules
+ XGETTEXT     ?= @XGETTEXT@ ;
+ MSGFMT       ?= @MSGFMT@ ;
+Index: ede-2.0/Jamrules
+===================================================================
+--- ede-2.0.orig/Jamrules
++++ ede-2.0/Jamrules
+@@ -16,9 +16,10 @@ if ! $(JAMCONFIG_READ) {
+ 
+ # by default all flags that jam uses directly are cleared
+ # here should _not_ be set anything since they are filled per target
+-CCFLAGS = ;
+-C++FLAGS = ;
++CCFLAGS = $(CFLAGS) ;
++C++FLAGS = $(CXXFLAGS) ;
+ OPTIM = ;
++LINKFLAGS = $(LDFLAGS) ;
+ 
+ # only haiku jam
+ JCACHEFILE = $(TOP)/.jamcache ;

@@ -1,0 +1,64 @@
+Index: ede-2.0/build/Install.jam
+===================================================================
+--- ede-2.0.orig/build/Install.jam
++++ ede-2.0/build/Install.jam
+@@ -127,32 +127,33 @@ rule InstallEdeMenu [targets]
+ # Installs XDG mime files and run update-mime-database
+ rule InstallEdeMimeFiles
+ {
+-	# First check if we have 'update-mime-database' command
+-	# TODO: this should be set globaly
+-	local matches = [ Glob $(PATH) : update-mime-database ] ;
+-
+-	if ! $(matches) {
+-		return ;
+-	} else {
+-		local update_cmd pakdir ;
+-
+-		update_cmd = $(matches[1]) ;
+-
+-		# Files must be instaled in $(EDE_MIME_DIR)/packages or
+-		# update-mime-database will not see it
+-		pakdir = [ FDirName $(EDE_MIME_DIR) packages ] ;
+-		InstallData $(pakdir) : $(<) ;
+-
+-		MIME_UPDATE_DATABASE = $(update_cmd) ;
+-
+-		# Shut up jam warning
+-		NotFile $(EDE_MIME_DIR) ;
+-
+-		# Call update-mime-database after install/uninstall
+-		# Just hoping this will be executed after files are copied/removed...
+-		MimeUpdater install : $(EDE_MIME_DIR) ;
+-		MimeUpdater uninstall : $(EDE_MIME_DIR) ;
+-	}
++	InstallData $(EDE_MIME_DIR)/packages : $(<) ;
++#	# First check if we have 'update-mime-database' command
++#	# TODO: this should be set globaly
++#	local matches = [ Glob $(PATH) : update-mime-database ] ;
++#
++#	if ! $(matches) {
++#		return ;
++#	} else {
++#		local update_cmd pakdir ;
++#
++#		update_cmd = $(matches[1]) ;
++#
++#		# Files must be instaled in $(EDE_MIME_DIR)/packages or
++#		# update-mime-database will not see it
++#		pakdir = [ FDirName $(EDE_MIME_DIR) packages ] ;
++#		InstallData $(pakdir) : $(<) ;
++#
++#		MIME_UPDATE_DATABASE = $(update_cmd) ;
++#
++#		# Shut up jam warning
++#		NotFile $(EDE_MIME_DIR) ;
++#
++#		# Call update-mime-database after install/uninstall
++#		# Just hoping this will be executed after files are copied/removed...
++#		MimeUpdater install : $(EDE_MIME_DIR) ;
++#		MimeUpdater uninstall : $(EDE_MIME_DIR) ;
++#	}
+ }
+ 
+ # InstallEdeDoc [targets] ;

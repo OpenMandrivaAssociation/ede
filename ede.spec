@@ -71,8 +71,6 @@ EOF
 mv %{buildroot}%{_docdir}/%{name}-%{version}* %{buildroot}%{_docdir}/%{name}
 
 
-%postun
-%make_session
 
 %files
 %doc AUTHORS AUTHORS.pekwm ChangeLog README

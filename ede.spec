@@ -1,6 +1,6 @@
 Name: 		ede
 Version: 	2.0
-Release: 	1
+Release: 	2
 Source0: 	http://downloads.sourceforge.net/project/ede/%{name}/%{version}/%{name}-%{version}.tar.gz
 Patch0:		ede-1.0.4-exclude-unused-progs.patch
 Patch1:		ede-2.0-mdv-linking.patch

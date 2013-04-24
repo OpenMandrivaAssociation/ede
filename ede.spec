@@ -70,8 +70,6 @@ EOF
 
 mv %{buildroot}%{_docdir}/%{name}-%{version}* %{buildroot}%{_docdir}/%{name}
 
-%post
-%make_session
 
 %postun
 %make_session

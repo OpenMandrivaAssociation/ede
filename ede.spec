@@ -9,7 +9,7 @@ Patch3:		ede-2.0-rosa-flags.patch
 Patch4:		ede-2.0-rosa-format-security.patch
 Patch5:		ede-2.0-rosa-no-update-mime-database.patch
 Summary:	The core programs for the Equinox Desktop Environment
-URL: 		http://equinox-project.org/
+URL: 		https://equinox-project.org/
 License: 	GPLv2+
 Group: 		Graphical desktop/Other
 
